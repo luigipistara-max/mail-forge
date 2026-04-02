@@ -32,21 +32,45 @@ class TemplateController extends Controller
         $perPage  = 20;
         $search   = trim((string) ($this->request->query['search'] ?? ''));
         $category = trim((string) ($this->request->query['category'] ?? ''));
+        $prefix   = \MailForge\Core\Database::getPrefix();
 
-        $conditions = ['deleted_at IS NULL'];
+        $where    = '`deleted_at` IS NULL';
+        $bindings = [];
+
         if ($search !== '') {
-            $conditions['name'] = $search;
-        }
-        if ($category !== '') {
-            $conditions['category'] = $category;
+            $where .= ' AND `name` LIKE :search';
+            $bindings[':search'] = "%{$search}%";
         }
 
-        $result = $this->templateModel->paginate($page, $perPage, ['deleted_at' => null]);
+        if ($category !== '') {
+            $where .= ' AND `category` = :category';
+            $bindings[':category'] = $category;
+        }
+
+        $countStmt = $this->db->prepare(
+            "SELECT COUNT(*) FROM `{$prefix}templates` WHERE {$where}"
+        );
+        $countStmt->execute($bindings);
+        $total = (int) $countStmt->fetchColumn();
+
+        $offset   = ($page - 1) * $perPage;
+        $dataStmt = $this->db->prepare(
+            "SELECT * FROM `{$prefix}templates` WHERE {$where}
+             ORDER BY `created_at` DESC LIMIT {$perPage} OFFSET {$offset}"
+        );
+        $dataStmt->execute($bindings);
+        $templates = $dataStmt->fetchAll();
+
         $categories = $this->templateModel->getCategories();
 
         $this->render('templates/index', [
-            'templates'  => $result['data'],
-            'pagination' => $result,
+            'templates'  => $templates,
+            'pagination' => [
+                'total'        => $total,
+                'per_page'     => $perPage,
+                'current_page' => $page,
+                'last_page'    => (int) ceil($total / $perPage),
+            ],
             'categories' => $categories,
             'search'     => $search,
             'category'   => $category,
