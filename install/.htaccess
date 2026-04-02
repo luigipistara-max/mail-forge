@@ -1,0 +1,22 @@
+# Deny access to the installer entirely if already installed
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{DOCUMENT_ROOT}/../storage/install.lock -f
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+# Deny direct access to template and step includes
+<FilesMatch "\.(php)$">
+    <If "-f '%{DOCUMENT_ROOT}/index.php' && '%{REQUEST_URI}' !~ m|^/install/index\.php|">
+        # Allow only index.php as the entry point; block direct access to steps/templates
+    </If>
+</FilesMatch>
+
+<IfModule mod_authz_core.c>
+    <Files "layout.php">
+        Require all denied
+    </Files>
+    <Files "step*.php">
+        Require all denied
+    </Files>
+</IfModule>
