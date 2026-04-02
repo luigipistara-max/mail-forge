@@ -1,0 +1,8 @@
+vendor/
+.env
+storage/logs/*.log
+storage/cache/*
+storage/uploads/*
+storage/temp/*
+storage/install.lock
+*.DS_Store
