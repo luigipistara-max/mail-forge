@@ -64,7 +64,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
-require_once __DIR__ . '/../config/constants.php';
+$constantsFile = __DIR__ . '/../config/constants.php';
+if (file_exists($constantsFile)) {
+    require_once $constantsFile;
+}
 
 // ─── Application array ───────────────────────────────────────────────────────
 

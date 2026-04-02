@@ -16,7 +16,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php database/migrate.php"
+            "@php -r \"file_exists('database/migrate.php') && passthru('php database/migrate.php');\""
         ]
     },
     "config": {
