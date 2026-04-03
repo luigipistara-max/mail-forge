@@ -33,9 +33,8 @@ if (!empty($contact['tags'])) {
 </div>
 <?php endif; ?>
 
-<form method="POST" action="<?= $isEdit ? '/contacts/' . (int)$contact['id'] : '/contacts' ?>">
+<form method="POST" action="<?= $isEdit ? '/contacts/' . (int)$contact['id'] . '/update' : '/contacts' ?>">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
-    <?php if ($isEdit): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 
     <div class="row g-4">
         <div class="col-lg-8">

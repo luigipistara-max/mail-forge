@@ -158,7 +158,7 @@ class ContactController extends Controller
         $tagModel = new Tag();
         $tags     = $tagModel->findAll();
 
-        $this->render('contacts/create', [
+        $this->render('contacts/form', [
             'csrf'         => CsrfHelper::getToken(),
             'lists'        => $lists,
             'customFields' => $customFields,
@@ -266,7 +266,7 @@ class ContactController extends Controller
         $allTags     = $tagModel->findAll();
         $contactTags = $tagModel->getContactTags($id);
 
-        $this->render('contacts/edit', [
+        $this->render('contacts/form', [
             'csrf'         => CsrfHelper::getToken(),
             'contact'      => $contact,
             'lists'        => $lists,
@@ -419,6 +419,21 @@ class ContactController extends Controller
         $tmpPath = $file['tmp_name'];
         if (!is_file($tmpPath)) {
             $this->flash('error', 'File upload failed.');
+            $this->redirect('/contacts/import');
+        }
+
+        $allowedMimes = ['text/csv', 'text/plain', 'application/csv', 'application/vnd.ms-excel'];
+        $detectedMime = (string) (mime_content_type($tmpPath) ?: '');
+        if (!in_array($detectedMime, $allowedMimes, true)) {
+            $this->flash('error', 'Invalid file type. Please upload a CSV file.');
+            $this->redirect('/contacts/import');
+        }
+
+        $allowedExts  = ['csv', 'txt'];
+        $originalName = strtolower((string) ($file['name'] ?? ''));
+        $ext          = pathinfo($originalName, PATHINFO_EXTENSION);
+        if (!in_array($ext, $allowedExts, true)) {
+            $this->flash('error', 'Invalid file extension. Please upload a .csv file.');
             $this->redirect('/contacts/import');
         }
 

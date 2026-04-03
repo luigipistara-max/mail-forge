@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Mail Forge">
-    <meta name="csrf-token" content="<?= htmlspecialchars(\MailForge\Helpers\CsrfHelper::token(), ENT_QUOTES, 'UTF-8') ?>">
+    <meta name="csrf-token" content="<?= htmlspecialchars(\MailForge\Helpers\CsrfHelper::getToken(), ENT_QUOTES, 'UTF-8') ?>">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
     <title><?= htmlspecialchars($pageTitle ?? 'Mail Forge', ENT_QUOTES, 'UTF-8') ?> - Mail Forge</title>

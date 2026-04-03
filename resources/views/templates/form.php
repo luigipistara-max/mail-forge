@@ -22,7 +22,7 @@ $e = fn(string $key): string => htmlspecialchars($template[$key] ?? '', ENT_QUOT
 </div>
 <?php endif; ?>
 
-<form method="POST" action="<?= $isEdit ? '/templates/' . (int)$template['id'] : '/templates' ?>">
+<form method="POST" action="<?= $isEdit ? '/templates/' . (int)$template['id'] . '/update' : '/templates' ?>">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
     <?php if ($isEdit): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 

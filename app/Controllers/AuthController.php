@@ -33,6 +33,7 @@ class AuthController extends Controller
         $this->render('auth/login', [
             'csrf'  => CsrfHelper::getToken(),
             'error' => $this->getFlash('error'),
+            'old'   => ['email' => $this->session->getOld('email', ''), 'remember' => $this->session->getOld('remember', '')],
         ]);
     }
 

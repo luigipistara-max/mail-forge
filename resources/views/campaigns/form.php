@@ -30,9 +30,8 @@ $e = fn(string $key): string => htmlspecialchars($campaign[$key] ?? '', ENT_QUOT
 </div>
 <?php endif; ?>
 
-<form method="POST" action="<?= $isEdit ? '/campaigns/' . (int)$campaign['id'] : '/campaigns' ?>" id="campaignForm">
+<form method="POST" action="<?= $isEdit ? '/campaigns/' . (int)$campaign['id'] . '/update' : '/campaigns' ?>" id="campaignForm">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
-    <?php if ($isEdit): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
     <input type="hidden" name="action" id="formAction" value="draft">
 
     <div class="row g-4">

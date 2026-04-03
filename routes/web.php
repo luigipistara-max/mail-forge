@@ -79,20 +79,31 @@ $router->get('/campaigns/{id}/recipients', ['MailForge\Controllers\CampaignContr
 $router->post('/campaigns/{id}/send-test', ['MailForge\Controllers\CampaignController', 'sendTest']);
 
 // SMTP
-$router->get('/smtp', ['MailForge\Controllers\SmtpController', 'index']);
-$router->get('/smtp/create', ['MailForge\Controllers\SmtpController', 'create']);
-$router->post('/smtp', ['MailForge\Controllers\SmtpController', 'store']);
-$router->get('/smtp/{id}/edit', ['MailForge\Controllers\SmtpController', 'edit']);
-$router->post('/smtp/{id}/update', ['MailForge\Controllers\SmtpController', 'update']);
-$router->post('/smtp/{id}/delete', ['MailForge\Controllers\SmtpController', 'delete']);
-$router->post('/smtp/{id}/test', ['MailForge\Controllers\SmtpController', 'test']);
-$router->post('/smtp/{id}/toggle', ['MailForge\Controllers\SmtpController', 'toggleActive']);
+$router->get('/smtp-servers', ['MailForge\Controllers\SmtpController', 'index']);
+$router->get('/smtp-servers/create', ['MailForge\Controllers\SmtpController', 'create']);
+$router->post('/smtp-servers', ['MailForge\Controllers\SmtpController', 'store']);
+$router->get('/smtp-servers/{id}/edit', ['MailForge\Controllers\SmtpController', 'edit']);
+$router->put('/smtp-servers/{id}', ['MailForge\Controllers\SmtpController', 'update']);
+$router->delete('/smtp-servers/{id}', ['MailForge\Controllers\SmtpController', 'delete']);
+$router->post('/smtp-servers/{id}/test', ['MailForge\Controllers\SmtpController', 'test']);
+$router->post('/smtp-servers/{id}/toggle', ['MailForge\Controllers\SmtpController', 'toggleActive']);
+
+// Automations
+$router->get('/automations', ['MailForge\Controllers\AutomationController', 'index']);
+$router->get('/automations/create', ['MailForge\Controllers\AutomationController', 'create']);
+$router->post('/automations', ['MailForge\Controllers\AutomationController', 'store']);
+$router->get('/automations/{id}', ['MailForge\Controllers\AutomationController', 'show']);
+$router->get('/automations/{id}/edit', ['MailForge\Controllers\AutomationController', 'edit']);
+$router->put('/automations/{id}', ['MailForge\Controllers\AutomationController', 'update']);
+$router->put('/automations/{id}/toggle', ['MailForge\Controllers\AutomationController', 'toggle']);
+$router->post('/automations/{id}/delete', ['MailForge\Controllers\AutomationController', 'delete']);
 
 // Reports
 $router->get('/reports', ['MailForge\Controllers\ReportController', 'index']);
 $router->get('/reports/campaigns/{id}', ['MailForge\Controllers\ReportController', 'campaign']);
 $router->get('/reports/campaigns/{id}/export', ['MailForge\Controllers\ReportController', 'export']);
 $router->get('/reports/contacts', ['MailForge\Controllers\ReportController', 'contacts']);
+$router->get('/reports/campaigns/{id}/links', ['MailForge\Controllers\ReportController', 'links']);
 
 // Settings
 $router->get('/settings', ['MailForge\Controllers\SettingsController', 'index']);

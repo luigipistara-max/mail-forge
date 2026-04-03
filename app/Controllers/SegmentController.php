@@ -44,7 +44,7 @@ class SegmentController extends Controller
 
         $filterFields = $this->getAvailableFilterFields();
 
-        $this->render('segments/create', [
+        $this->render('segments/form', [
             'csrf'         => CsrfHelper::getToken(),
             'filterFields' => $filterFields,
             'error'        => $this->getFlash('error'),
@@ -118,7 +118,7 @@ class SegmentController extends Controller
         $rules        = $this->segmentModel->getRules($id);
         $filterFields = $this->getAvailableFilterFields();
 
-        $this->render('segments/edit', [
+        $this->render('segments/form', [
             'csrf'         => CsrfHelper::getToken(),
             'segment'      => $segment,
             'rules'        => $rules,
@@ -285,23 +285,38 @@ class SegmentController extends Controller
             )->execute([$segmentId]);
         }
 
-        $fields     = (array) ($this->request->body['rule_field'] ?? []);
-        $operators  = (array) ($this->request->body['rule_operator'] ?? []);
-        $values     = (array) ($this->request->body['rule_value'] ?? []);
+        $allowedFields = array_column($this->getAvailableFilterFields(), 'field');
+        $allowedOps    = ['equals', 'not_equals', 'contains', 'not_contains', 'starts_with',
+                          'ends_with', 'greater_than', 'less_than', 'is_null', 'is_not_null'];
+
+        $fields    = (array) ($this->request->body['rule_field'] ?? []);
+        $operators = (array) ($this->request->body['rule_operator'] ?? []);
+        $values    = (array) ($this->request->body['rule_value'] ?? []);
 
         foreach ($fields as $i => $field) {
             $field    = trim((string) $field);
             $operator = trim((string) ($operators[$i] ?? 'equals'));
             $value    = trim((string) ($values[$i] ?? ''));
 
-            if ($field !== '' && $value !== '') {
-                $this->segmentModel->addRule($segmentId, [
-                    'field'      => $field,
-                    'operator'   => $operator,
-                    'value'      => $value,
-                    'created_at' => date('Y-m-d H:i:s'),
-                ]);
+            if ($field === '' || !in_array($field, $allowedFields, true)) {
+                continue;
             }
+
+            if (!in_array($operator, $allowedOps, true)) {
+                $operator = 'equals';
+            }
+
+            $noValueOps = ['is_null', 'is_not_null'];
+            if (!in_array($operator, $noValueOps, true) && $value === '') {
+                continue;
+            }
+
+            $this->segmentModel->addRule($segmentId, [
+                'field'      => $field,
+                'operator'   => $operator,
+                'value'      => $value,
+                'created_at' => date('Y-m-d H:i:s'),
+            ]);
         }
     }
 }

@@ -87,7 +87,7 @@ class TemplateController extends Controller
 
         $categories = $this->templateModel->getCategories();
 
-        $this->render('templates/create', [
+        $this->render('templates/form', [
             'csrf'       => CsrfHelper::getToken(),
             'categories' => $categories,
             'error'      => $this->getFlash('error'),
@@ -156,7 +156,7 @@ class TemplateController extends Controller
 
         $categories = $this->templateModel->getCategories();
 
-        $this->render('templates/edit', [
+        $this->render('templates/form', [
             'csrf'       => CsrfHelper::getToken(),
             'template'   => $template,
             'categories' => $categories,

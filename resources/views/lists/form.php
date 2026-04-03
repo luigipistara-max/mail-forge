@@ -22,9 +22,8 @@ $e = fn(string $key): string => htmlspecialchars($list[$key] ?? '', ENT_QUOTES, 
 </div>
 <?php endif; ?>
 
-<form method="POST" action="<?= $isEdit ? '/lists/' . (int)$list['id'] : '/lists' ?>">
+<form method="POST" action="<?= $isEdit ? '/lists/' . (int)$list['id'] . '/update' : '/lists' ?>">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
-    <?php if ($isEdit): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 
     <div class="row g-4">
         <div class="col-lg-8">

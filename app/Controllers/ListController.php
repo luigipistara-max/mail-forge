@@ -85,7 +85,7 @@ class ListController extends Controller
     {
         $this->requireAuth();
 
-        $this->render('lists/create', [
+        $this->render('lists/form', [
             'csrf'  => CsrfHelper::getToken(),
             'old'   => $this->session->getOld('list', []),
             'error' => $this->getFlash('error'),
@@ -152,7 +152,7 @@ class ListController extends Controller
             $this->abort(404, 'List not found.');
         }
 
-        $this->render('lists/edit', [
+        $this->render('lists/form', [
             'csrf'  => CsrfHelper::getToken(),
             'list'  => $list,
             'error' => $this->getFlash('error'),

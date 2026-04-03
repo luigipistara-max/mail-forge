@@ -29,7 +29,7 @@ class SmtpController extends Controller
 
         $servers = $this->smtpModel->findAll(['deleted_at IS NULL']);
 
-        $this->render('smtp/index', [
+        $this->render('settings/smtp/index', [
             'servers' => $servers,
             'success' => $this->getFlash('success'),
             'error'   => $this->getFlash('error'),
@@ -42,7 +42,7 @@ class SmtpController extends Controller
     {
         $this->requireAuth();
 
-        $this->render('smtp/create', [
+        $this->render('settings/smtp/form', [
             'csrf'  => CsrfHelper::getToken(),
             'error' => $this->getFlash('error'),
         ]);
@@ -57,7 +57,7 @@ class SmtpController extends Controller
         $csrfToken = (string) ($this->request->body['_csrf_token'] ?? '');
         if (!CsrfHelper::validate($csrfToken)) {
             $this->flash('error', 'Invalid security token.');
-            $this->redirect('/smtp/create');
+            $this->redirect('/smtp-servers/create');
         }
 
         $data = $this->extractSmtpData();
@@ -72,7 +72,7 @@ class SmtpController extends Controller
 
         if ($validator->fails()) {
             $this->flash('error', implode(' ', $validator->allErrors()));
-            $this->redirect('/smtp/create');
+            $this->redirect('/smtp-servers/create');
         }
 
         if (isset($data['password']) && $data['password'] !== '') {
@@ -91,7 +91,7 @@ class SmtpController extends Controller
         );
 
         $this->flash('success', 'SMTP server saved.');
-        $this->redirect('/smtp');
+        $this->redirect('/smtp-servers');
     }
 
     // ─── Edit ─────────────────────────────────────────────────────────────
@@ -108,7 +108,7 @@ class SmtpController extends Controller
         // Do not expose the encrypted password in the form
         $server['password'] = '';
 
-        $this->render('smtp/edit', [
+        $this->render('settings/smtp/form', [
             'csrf'   => CsrfHelper::getToken(),
             'server' => $server,
             'error'  => $this->getFlash('error'),
@@ -124,7 +124,7 @@ class SmtpController extends Controller
         $csrfToken = (string) ($this->request->body['_csrf_token'] ?? '');
         if (!CsrfHelper::validate($csrfToken)) {
             $this->flash('error', 'Invalid security token.');
-            $this->redirect("/smtp/{$id}/edit");
+            $this->redirect("/smtp-servers/{$id}/edit");
         }
 
         $server = $this->smtpModel->find($id);
@@ -144,7 +144,7 @@ class SmtpController extends Controller
 
         if ($validator->fails()) {
             $this->flash('error', implode(' ', $validator->allErrors()));
-            $this->redirect("/smtp/{$id}/edit");
+            $this->redirect("/smtp-servers/{$id}/edit");
         }
 
         // Only update password if a new one was provided
@@ -166,7 +166,7 @@ class SmtpController extends Controller
         );
 
         $this->flash('success', 'SMTP server updated.');
-        $this->redirect('/smtp');
+        $this->redirect('/smtp-servers');
     }
 
     // ─── Delete ───────────────────────────────────────────────────────────
@@ -178,7 +178,7 @@ class SmtpController extends Controller
         $csrfToken = (string) ($this->request->body['_csrf_token'] ?? '');
         if (!CsrfHelper::validate($csrfToken)) {
             $this->flash('error', 'Invalid security token.');
-            $this->redirect('/smtp');
+            $this->redirect('/smtp-servers');
         }
 
         $server = $this->smtpModel->find($id);
@@ -197,7 +197,7 @@ class SmtpController extends Controller
         );
 
         $this->flash('success', 'SMTP server deleted.');
-        $this->redirect('/smtp');
+        $this->redirect('/smtp-servers');
     }
 
     // ─── Test Connection ──────────────────────────────────────────────────
@@ -277,7 +277,7 @@ class SmtpController extends Controller
         }
 
         $this->flash('success', 'SMTP server status updated.');
-        $this->redirect('/smtp');
+        $this->redirect('/smtp-servers');
     }
 
     // ─── Private helpers ──────────────────────────────────────────────────

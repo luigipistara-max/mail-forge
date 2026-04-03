@@ -119,13 +119,13 @@ class CampaignController extends Controller
         $templateModel = new Template();
         $smtpModel     = new SmtpServer();
 
-        $this->render('campaigns/create', [
-            'csrf'      => CsrfHelper::getToken(),
-            'lists'     => $listModel->findAll(),
-            'segments'  => $segmentModel->findAll(),
-            'templates' => $templateModel->getActive(),
-            'smtps'     => $smtpModel->getActive(),
-            'error'     => $this->getFlash('error'),
+        $this->render('campaigns/form', [
+            'csrf'        => CsrfHelper::getToken(),
+            'lists'       => $listModel->findAll(),
+            'segments'    => $segmentModel->findAll(),
+            'templates'   => $templateModel->getActive(),
+            'smtpServers' => $smtpModel->getActive(),
+            'error'       => $this->getFlash('error'),
         ]);
     }
 
@@ -193,15 +193,15 @@ class CampaignController extends Controller
         $templateModel = new Template();
         $smtpModel     = new SmtpServer();
 
-        $this->render('campaigns/edit', [
-            'csrf'      => CsrfHelper::getToken(),
-            'campaign'  => $campaign,
-            'lists'     => $listModel->findAll(),
-            'segments'  => $segmentModel->findAll(),
-            'templates' => $templateModel->getActive(),
-            'smtps'     => $smtpModel->getActive(),
-            'error'     => $this->getFlash('error'),
-            'success'   => $this->getFlash('success'),
+        $this->render('campaigns/form', [
+            'csrf'        => CsrfHelper::getToken(),
+            'campaign'    => $campaign,
+            'lists'       => $listModel->findAll(),
+            'segments'    => $segmentModel->findAll(),
+            'templates'   => $templateModel->getActive(),
+            'smtpServers' => $smtpModel->getActive(),
+            'error'       => $this->getFlash('error'),
+            'success'     => $this->getFlash('success'),
         ]);
     }
 
