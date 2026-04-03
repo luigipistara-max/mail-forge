@@ -30,7 +30,7 @@ if (!empty($segment['rules']) && is_string($segment['rules'])) {
 </div>
 <?php endif; ?>
 
-<form method="POST" action="<?= $isEdit ? '/segments/' . (int)$segment['id'] : '/segments' ?>">
+<form method="POST" action="<?= $isEdit ? '/segments/' . (int)$segment['id'] . '/update' : '/segments' ?>">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
     <?php if ($isEdit): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 

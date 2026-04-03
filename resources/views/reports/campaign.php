@@ -33,7 +33,7 @@ $statusFilter = $filters['status'] ?? '';
             <?= htmlspecialchars($campaign['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
         </h1>
     </div>
-    <a href="/reports/campaign/<?= (int)$campaign['id'] ?>/export" class="btn btn-outline-secondary btn-sm">
+    <a href="/reports/campaigns/<?= (int)$campaign['id'] ?>/export" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-download me-1"></i>Export CSV
     </a>
 </div>

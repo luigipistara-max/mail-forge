@@ -25,7 +25,7 @@ $errors = $errors ?? [];
                 id="email"
                 name="email"
                 class="form-control <?= !empty($errors['email']) ? 'is-invalid' : '' ?>"
-                value="<?= htmlspecialchars($_OLD['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                 placeholder="you@example.com"
                 required
                 autocomplete="email"
@@ -64,7 +64,7 @@ $errors = $errors ?? [];
 
     <div class="mb-4 form-check">
         <input type="checkbox" class="form-check-input" id="remember" name="remember" value="1"
-            <?= !empty($_OLD['remember']) ? 'checked' : '' ?>>
+            <?= !empty($old['remember'] ?? '') ? 'checked' : '' ?>>
         <label class="form-check-label" for="remember">Remember me for 30 days</label>
     </div>
 

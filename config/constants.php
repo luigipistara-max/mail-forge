@@ -27,9 +27,6 @@ const AUTOMATION_STATUS_ACTIVE = 'active';
 const AUTOMATION_STATUS_PAUSED = 'paused';
 const AUTOMATION_STATUS_STOPPED = 'stopped';
 
-// Encryption
-const ENCRYPTION_KEY = 'your-encryption-key-here';
-
 // Validation Patterns
 const VALIDATION_EMAIL_PATTERN = '/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/';
 const VALIDATION_PHONE_PATTERN = '/^\+?[1-9]\d{1,14}$/';
