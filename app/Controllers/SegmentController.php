@@ -307,14 +307,16 @@ class SegmentController extends Controller
             }
 
             $noValueOps = ['is_null', 'is_not_null'];
-            if ($value !== '' || in_array($operator, $noValueOps, true)) {
-                $this->segmentModel->addRule($segmentId, [
-                    'field'      => $field,
-                    'operator'   => $operator,
-                    'value'      => $value,
-                    'created_at' => date('Y-m-d H:i:s'),
-                ]);
+            if (!in_array($operator, $noValueOps, true) && $value === '') {
+                continue;
             }
+
+            $this->segmentModel->addRule($segmentId, [
+                'field'      => $field,
+                'operator'   => $operator,
+                'value'      => $value,
+                'created_at' => date('Y-m-d H:i:s'),
+            ]);
         }
     }
 }

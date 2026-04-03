@@ -102,7 +102,7 @@ $navItems = [
     ['href' => '/campaigns',    'icon' => 'bi-megaphone',       'label' => 'Campaigns'],
     ['href' => '/automations',  'icon' => 'bi-diagram-3',       'label' => 'Automations'],
     ['href' => '/reports',      'icon' => 'bi-bar-chart-line',  'label' => 'Reports'],
-    ['href' => '/smtp',         'icon' => 'bi-server',         'label' => 'SMTP Servers'],
+    ['href' => '/smtp-servers', 'icon' => 'bi-server',         'label' => 'SMTP Servers'],
     ['href' => '/settings',     'icon' => 'bi-gear',            'label' => 'Settings'],
 ];
 ?>
