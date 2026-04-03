@@ -12,8 +12,12 @@ const CONTACT_STATUS_INACTIVE = 'inactive';
 const CONTACT_STATUS_ARCHIVED = 'archived';
 
 // Campaign Statuses
+const CAMPAIGN_STATUS_DRAFT = 'draft';
+const CAMPAIGN_STATUS_QUEUED = 'queued';
+const CAMPAIGN_STATUS_SENDING = 'sending';
 const CAMPAIGN_STATUS_SCHEDULED = 'scheduled';
 const CAMPAIGN_STATUS_RUNNING = 'running';
+const CAMPAIGN_STATUS_PAUSED = 'paused';
 const CAMPAIGN_STATUS_COMPLETED = 'completed';
 const CAMPAIGN_STATUS_CANCELLED = 'cancelled';
 
@@ -30,4 +34,7 @@ const AUTOMATION_STATUS_STOPPED = 'stopped';
 // Validation Patterns
 const VALIDATION_EMAIL_PATTERN = '/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/';
 const VALIDATION_PHONE_PATTERN = '/^\+?[1-9]\d{1,14}$/';
+
+// Security
+define('ENCRYPTION_KEY', $_ENV['ENCRYPTION_KEY'] ?? getenv('ENCRYPTION_KEY') ?: 'CHANGE-ME-IMMEDIATELY');
 ?>

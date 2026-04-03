@@ -293,7 +293,8 @@ function writeEnvFile(array $data): array
     $pwaTheme    = $platform['pwa_theme_color'] ?? '#0d6efd';
     $pwaBg       = $platform['pwa_background_color'] ?? '#ffffff';
 
-    $appKey = 'base64:' . base64_encode(random_bytes(32));
+    $appKey         = 'base64:' . base64_encode(random_bytes(32));
+    $encryptionKey  = bin2hex(random_bytes(32));
 
     $env = <<<ENV
 APP_NAME="{$appName}"
@@ -345,6 +346,7 @@ PWA_BG_COLOR={$pwaBg}
 TRACKING_OPENS=true
 TRACKING_CLICKS=true
 DOUBLE_OPTIN={$doubleOptIn}
+ENCRYPTION_KEY={$encryptionKey}
 ENV;
 
     $envPath = ROOT_BASE . '/.env';
