@@ -4,23 +4,29 @@ declare(strict_types=1);
 
 // ─── Autoloader ──────────────────────────────────────────────────────────────
 
-$autoloader = __DIR__ . '/../vendor/autoload.php';
+$vendorAutoload = __DIR__ . '/../vendor/autoload.php';
 
-if (!file_exists($autoloader)) {
-    http_response_code(503);
-    echo 'Dependencies not installed. Run <code>composer install</code>.';
-    exit(1);
+if (file_exists($vendorAutoload)) {
+    // Composer is available – use its autoloader (includes all dependencies)
+    require_once $vendorAutoload;
+} else {
+    // Shared hosting / no Composer – use the bundled native autoloader
+    require_once __DIR__ . '/autoload.php';
 }
-
-require_once $autoloader;
 
 // ─── Environment ─────────────────────────────────────────────────────────────
 
 $envFile = __DIR__ . '/../.env';
 
 if (file_exists($envFile)) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-    $dotenv->load();
+    if (class_exists('Dotenv\Dotenv')) {
+        // Composer is available with vlucas/phpdotenv
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+        $dotenv->load();
+    } else {
+        // Native fallback parser
+        \MailForge\Helpers\EnvLoader::load(__DIR__ . '/..');
+    }
 }
 
 // ─── Error reporting ─────────────────────────────────────────────────────────

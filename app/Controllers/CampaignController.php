@@ -153,7 +153,7 @@ class CampaignController extends Controller
             $this->redirect('/campaigns/create');
         }
 
-        $data['uuid']       = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        $data['uuid']       = \MailForge\Helpers\UuidHelper::generate();
         $data['status']     = 'draft';
         $data['created_by'] = $this->currentUser()['id'] ?? null;
         $data['created_at'] = date('Y-m-d H:i:s');
@@ -469,7 +469,7 @@ class CampaignController extends Controller
         }
 
         $newData = [
-            'uuid'                   => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+            'uuid'                   => \MailForge\Helpers\UuidHelper::generate(),
             'name'                   => 'Copy of ' . $campaign['name'],
             'subject'                => $campaign['subject'],
             'preheader'              => $campaign['preheader'],

@@ -80,7 +80,7 @@ class SegmentController extends Controller
             'name'           => $name,
             'description'    => trim((string) ($this->request->body['description'] ?? '')),
             'match_type'     => $matchType,
-            'uuid'           => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+            'uuid'           => \MailForge\Helpers\UuidHelper::generate(),
             'created_by'     => $this->currentUser()['id'] ?? null,
             'created_at'     => date('Y-m-d H:i:s'),
         ]);

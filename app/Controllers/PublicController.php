@@ -63,7 +63,7 @@ class PublicController extends Controller
                 }
 
                 $contactId = $contactModel->create([
-                    'uuid'               => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+                    'uuid'               => \MailForge\Helpers\UuidHelper::generate(),
                     'email'              => $email,
                     'first_name'         => $firstName,
                     'last_name'          => $lastName,

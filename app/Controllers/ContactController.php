@@ -200,7 +200,7 @@ class ContactController extends Controller
             $this->redirect('/contacts/create');
         }
 
-        $data['uuid']       = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        $data['uuid']       = \MailForge\Helpers\UuidHelper::generate();
         $data['created_at'] = date('Y-m-d H:i:s');
 
         $contactId = $this->contactModel->create($data);
