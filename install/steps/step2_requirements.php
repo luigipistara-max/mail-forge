@@ -15,7 +15,8 @@ $writableDirs = [
     'storage/logs/'    => $rootBase . '/storage/logs',
     'storage/cache/'   => $rootBase . '/storage/cache',
     'storage/uploads/' => $rootBase . '/storage/uploads',
-    'public/'          => $rootBase . '/public',
+    'storage/temp/'    => $rootBase . '/storage/temp',
+    'public/assets/'   => $rootBase . '/public/assets',
 ];
 $dirResults = [];
 foreach ($writableDirs as $label => $path) {
