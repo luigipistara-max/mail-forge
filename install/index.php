@@ -192,6 +192,21 @@ function handleRunInstall(): array
     $errors = [];
     $data   = $_SESSION['install_data'] ?? [];
 
+    // 0. Ensure required directories exist with secure permissions (0775)
+    $requiredDirs = [
+        ROOT_BASE . '/storage',
+        ROOT_BASE . '/storage/logs',
+        ROOT_BASE . '/storage/cache',
+        ROOT_BASE . '/storage/uploads',
+        ROOT_BASE . '/storage/temp',
+        ROOT_BASE . '/public/assets',
+    ];
+    foreach ($requiredDirs as $dir) {
+        if (!is_dir($dir) && !mkdir($dir, 0775, true)) {
+            $errors[] = 'Could not create directory: ' . str_replace(ROOT_BASE . '/', '', $dir);
+        }
+    }
+
     // 1. Write .env file
     $envResult = writeEnvFile($data);
     if (!$envResult['success']) {
