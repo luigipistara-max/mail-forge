@@ -1,0 +1,46 @@
+Options -Indexes
+Options +FollowSymLinks
+
+# ─── Protect sensitive files and directories ──────────────────────────────────
+
+# Block .env and other sensitive files
+<FilesMatch "^(\.env.*|composer\.(json|lock)|package(-lock)?\.json|yarn\.lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block hidden files (starting with a dot) except .well-known
+<FilesMatch "^\.(?!well-known)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block direct access to sensitive directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to sensitive server-side directories (not install/ — the installer must be web-accessible)
+    RewriteRule ^(app|config|database|storage|bootstrap|vendor|cron)(/|$) - [F,L]
+
+    # ─── Static assets served directly from public/ ───────────────────────────
+    # Requests for files/dirs that physically exist under public/ are served as-is
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # ─── Front controller ─────────────────────────────────────────────────────
+    # Everything else goes through the root index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# ─── Security headers ─────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
