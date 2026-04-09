@@ -125,7 +125,7 @@ class TemplateController extends Controller
             $this->redirect('/templates/create');
         }
 
-        $data['uuid']       = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        $data['uuid']       = \MailForge\Helpers\UuidHelper::generate();
         $data['created_by'] = $this->currentUser()['id'] ?? null;
         $data['created_at'] = date('Y-m-d H:i:s');
 

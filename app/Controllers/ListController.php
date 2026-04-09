@@ -124,7 +124,7 @@ class ListController extends Controller
             $this->redirect('/lists/create');
         }
 
-        $data['uuid']       = \Ramsey\Uuid\Uuid::uuid4()->toString();
+        $data['uuid']       = \MailForge\Helpers\UuidHelper::generate();
         $data['created_at'] = date('Y-m-d H:i:s');
 
         $listId = $this->listModel->create($data);
