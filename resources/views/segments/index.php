@@ -5,7 +5,7 @@ $segments = $segments ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">Segments</h6>
-    <a href="/segments/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/segments/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>New Segment
     </a>
 </div>
@@ -15,7 +15,7 @@ $segments = $segments ?? [];
         <?php if (empty($segments)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-funnel fs-1 d-block mb-2 opacity-25"></i>
-            No segments yet. <a href="/segments/create">Create your first segment</a>.
+            No segments yet. <a href="<?= BASE_PATH ?>/segments/create">Create your first segment</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -54,7 +54,7 @@ $segments = $segments ?? [];
                     <td class="text-muted small"><?= htmlspecialchars($segment['last_calculated_at'] ?? '—', ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="text-end">
                         <div class="btn-group btn-group-sm">
-                            <a href="/segments/<?= (int)$segment['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
+                            <a href="<?= BASE_PATH ?>/segments/<?= (int)$segment['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
                             <button type="button" class="btn btn-outline-danger" title="Delete"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
                                 data-segment-id="<?= (int)$segment['id'] ?>"
@@ -98,6 +98,6 @@ $segments = $segments ?? [];
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteSegmentName').textContent = btn.dataset.segmentName;
-    document.getElementById('deleteForm').action = '/segments/' + btn.dataset.segmentId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/segments/' + btn.dataset.segmentId;
 });
 </script>

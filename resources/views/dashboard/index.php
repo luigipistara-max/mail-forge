@@ -83,13 +83,13 @@ function campaignStatusBadge(string $status): string {
             <h6 class="fw-bold mb-0">Quick Actions</h6>
         </div>
         <div class="d-flex flex-wrap gap-2">
-            <a href="/campaigns/create" class="btn btn-primary">
+            <a href="<?= BASE_PATH ?>/campaigns/create" class="btn btn-primary">
                 <i class="bi bi-megaphone me-2"></i>New Campaign
             </a>
-            <a href="/contacts/import" class="btn btn-outline-secondary">
+            <a href="<?= BASE_PATH ?>/contacts/import" class="btn btn-outline-secondary">
                 <i class="bi bi-upload me-2"></i>Import Contacts
             </a>
-            <a href="/templates/create" class="btn btn-outline-secondary">
+            <a href="<?= BASE_PATH ?>/templates/create" class="btn btn-outline-secondary">
                 <i class="bi bi-file-earmark-plus me-2"></i>New Template
             </a>
         </div>
@@ -101,13 +101,13 @@ function campaignStatusBadge(string $status): string {
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-white d-flex align-items-center justify-content-between py-3">
                 <h6 class="fw-bold mb-0"><i class="bi bi-megaphone me-2 text-primary"></i>Recent Campaigns</h6>
-                <a href="/campaigns" class="btn btn-sm btn-outline-primary">View All</a>
+                <a href="<?= BASE_PATH ?>/campaigns" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body p-0">
                 <?php if (empty($recentCampaigns)): ?>
                 <div class="text-center text-muted py-5">
                     <i class="bi bi-megaphone fs-1 d-block mb-2 opacity-25"></i>
-                    No campaigns yet. <a href="/campaigns/create">Create your first campaign</a>.
+                    No campaigns yet. <a href="<?= BASE_PATH ?>/campaigns/create">Create your first campaign</a>.
                 </div>
                 <?php else: ?>
                 <div class="table-responsive">
@@ -125,7 +125,7 @@ function campaignStatusBadge(string $status): string {
                         <?php foreach ($recentCampaigns as $campaign): ?>
                             <tr>
                                 <td>
-                                    <a href="/campaigns/<?= (int)($campaign['id'] ?? 0) ?>" class="fw-semibold text-decoration-none text-dark">
+                                    <a href="<?= BASE_PATH ?>/campaigns/<?= (int)($campaign['id'] ?? 0) ?>" class="fw-semibold text-decoration-none text-dark">
                                         <?= htmlspecialchars($campaign['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                                     </a>
                                     <?php if (!empty($campaign['subject'])): ?>

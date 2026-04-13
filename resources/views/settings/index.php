@@ -1,42 +1,42 @@
 <?php
 $navCards = [
     [
-        'href'        => '/settings/general',
+        'href'        => BASE_PATH . '/settings/general',
         'icon'        => 'bi-sliders',
         'color'       => 'primary',
         'title'       => 'General',
         'description' => 'App name, company info, timezone and locale.',
     ],
     [
-        'href'        => '/settings/email',
+        'href'        => BASE_PATH . '/settings/email',
         'icon'        => 'bi-envelope-at',
         'color'       => 'info',
         'title'       => 'Email',
         'description' => 'Default sender, reply-to and batch sending options.',
     ],
     [
-        'href'        => '/settings/pwa',
+        'href'        => BASE_PATH . '/settings/pwa',
         'icon'        => 'bi-phone',
         'color'       => 'success',
         'title'       => 'PWA',
         'description' => 'Progressive Web App name, colors and manifest.',
     ],
     [
-        'href'        => '/settings/security',
+        'href'        => BASE_PATH . '/settings/security',
         'icon'        => 'bi-shield-lock',
         'color'       => 'danger',
         'title'       => 'Security',
         'description' => 'Login limits, session timeout and password policy.',
     ],
     [
-        'href'        => '/settings/queue',
+        'href'        => BASE_PATH . '/settings/queue',
         'icon'        => 'bi-stack',
         'color'       => 'warning',
         'title'       => 'Queue',
         'description' => 'Batch sizes, retry attempts and failure thresholds.',
     ],
     [
-        'href'        => '/smtp-servers',
+        'href'        => BASE_PATH . '/smtp-servers',
         'icon'        => 'bi-envelope-arrow-up',
         'color'       => 'secondary',
         'title'       => 'SMTP Servers',

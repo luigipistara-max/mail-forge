@@ -16,7 +16,7 @@ $steps = $automation['steps'] ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 fw-bold"><?= $isEdit ? 'Edit Automation' : 'New Automation' ?></h1>
-    <a href="/automations" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_PATH ?>/automations" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-arrow-left me-1"></i>Back
     </a>
 </div>
@@ -219,7 +219,7 @@ $steps = $automation['steps'] ?? [];
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-check-lg me-1"></i><?= $isEdit ? 'Save Changes' : 'Create Automation' ?>
                         </button>
-                        <a href="/automations" class="btn btn-outline-secondary">Cancel</a>
+                        <a href="<?= BASE_PATH ?>/automations" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                 </div>
             </div>

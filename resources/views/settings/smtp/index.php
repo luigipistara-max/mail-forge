@@ -5,7 +5,7 @@ $servers = $servers ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 fw-bold">SMTP Servers</h1>
-    <a href="/smtp-servers/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/smtp-servers/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>Add Server
     </a>
 </div>
@@ -15,7 +15,7 @@ $servers = $servers ?? [];
         <?php if (empty($servers)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-envelope-at fs-1 d-block mb-2 opacity-25"></i>
-            No SMTP servers yet. <a href="/smtp-servers/create">Add your first server</a>.
+            No SMTP servers yet. <a href="<?= BASE_PATH ?>/smtp-servers/create">Add your first server</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -70,7 +70,7 @@ $servers = $servers ?? [];
                                 data-server-id="<?= (int)$server['id'] ?>">
                                 <i class="bi bi-plug"></i>
                             </button>
-                            <a href="/smtp-servers/<?= (int)$server['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
+                            <a href="<?= BASE_PATH ?>/smtp-servers/<?= (int)$server['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-outline-danger" title="Delete"
@@ -131,7 +131,7 @@ $servers = $servers ?? [];
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteServerName').textContent = btn.dataset.serverName;
-    document.getElementById('deleteForm').action = '/smtp-servers/' + btn.dataset.serverId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/smtp-servers/' + btn.dataset.serverId;
 });
 
 document.querySelectorAll('.btn-test-smtp').forEach(function (btn) {

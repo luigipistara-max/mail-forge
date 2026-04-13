@@ -9,7 +9,7 @@
     <title><?= htmlspecialchars($pageTitle ?? 'Mail Forge', ENT_QUOTES, 'UTF-8') ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/app.css">
     <style>
         body {
             background: linear-gradient(135deg, #e8f0fe 0%, #f8f9fa 100%);
@@ -42,7 +42,7 @@
 <body>
 <div class="auth-wrapper">
     <div class="auth-logo">
-        <a href="/"><i class="bi bi-envelope-paper-fill me-2"></i>Mail <span>Forge</span></a>
+        <a href="<?= BASE_PATH ?>/"><i class="bi bi-envelope-paper-fill me-2"></i>Mail <span>Forge</span></a>
     </div>
 
     <?php
@@ -69,6 +69,6 @@
     <footer>&copy; <?= date('Y') ?> Mail Forge &mdash; Version <?= htmlspecialchars(defined('APP_VERSION') ? APP_VERSION : '1.0.0', ENT_QUOTES, 'UTF-8') ?></footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/app.js"></script>
+<script src="<?= BASE_PATH ?>/assets/js/app.js"></script>
 </body>
 </html>

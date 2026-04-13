@@ -48,7 +48,7 @@ $token   = $token   ?? '';
                         You will no longer receive emails from us.
                     </p>
                     <?php if ($token): ?>
-                    <form method="POST" action="/resubscribe">
+                    <form method="POST" action="<?= BASE_PATH ?>/resubscribe">
                         <?= \MailForge\Helpers\CsrfHelper::field() ?>
                         <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
                         <button type="submit" class="btn btn-outline-primary btn-sm me-2">
@@ -85,7 +85,7 @@ $token   = $token   ?? '';
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/unsubscribe">
+                <form method="POST" action="<?= BASE_PATH ?>/unsubscribe">
                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
                     <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
 
@@ -103,7 +103,7 @@ $token   = $token   ?? '';
                         <button type="submit" class="btn btn-danger fw-semibold">
                             <i class="bi bi-envelope-x me-2"></i>Confirm Unsubscribe
                         </button>
-                        <a href="/" class="btn btn-outline-secondary">
+                        <a href="<?= BASE_PATH ?>/" class="btn btn-outline-secondary">
                             Cancel – Keep Me Subscribed
                         </a>
                     </div>
@@ -116,7 +116,7 @@ $token   = $token   ?? '';
         <p class="text-center text-muted small mt-4 mb-0">
             You can also manage all your preferences in the
             <?php if ($token): ?>
-            <a href="/preferences?token=<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>" class="text-decoration-none">
+            <a href="<?= BASE_PATH ?>/preferences?token=<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>" class="text-decoration-none">
                 preferences center
             </a>.
             <?php else: ?>

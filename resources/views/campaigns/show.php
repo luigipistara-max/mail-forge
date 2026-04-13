@@ -30,13 +30,13 @@ $cColor = $statusColors[$cStatus] ?? 'secondary';
     </div>
     <div class="d-flex gap-2 flex-wrap">
         <?php if ($cStatus === 'draft' || $cStatus === 'scheduled'): ?>
-        <a href="/campaigns/<?= (int)$campaign['id'] ?>/edit" class="btn btn-outline-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/edit" class="btn btn-outline-primary btn-sm">
             <i class="bi bi-pencil me-1"></i>Edit
         </a>
         <?php endif; ?>
 
         <?php if ($cStatus === 'sending'): ?>
-        <form method="POST" action="/campaigns/<?= (int)$campaign['id'] ?>/pause" class="d-inline">
+        <form method="POST" action="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/pause" class="d-inline">
             <?= \MailForge\Helpers\CsrfHelper::field() ?>
             <button type="submit" class="btn btn-outline-warning btn-sm">
                 <i class="bi bi-pause-fill me-1"></i>Pause
@@ -45,7 +45,7 @@ $cColor = $statusColors[$cStatus] ?? 'secondary';
         <?php endif; ?>
 
         <?php if ($cStatus === 'paused'): ?>
-        <form method="POST" action="/campaigns/<?= (int)$campaign['id'] ?>/queue" class="d-inline">
+        <form method="POST" action="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/queue" class="d-inline">
             <?= \MailForge\Helpers\CsrfHelper::field() ?>
             <button type="submit" class="btn btn-outline-success btn-sm">
                 <i class="bi bi-play-fill me-1"></i>Resume
@@ -54,7 +54,7 @@ $cColor = $statusColors[$cStatus] ?? 'secondary';
         <?php endif; ?>
 
         <?php if (in_array($cStatus, ['sending', 'queued', 'paused', 'scheduled'], true)): ?>
-        <form method="POST" action="/campaigns/<?= (int)$campaign['id'] ?>/cancel" class="d-inline">
+        <form method="POST" action="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/cancel" class="d-inline">
             <?= \MailForge\Helpers\CsrfHelper::field() ?>
             <button type="submit" class="btn btn-outline-danger btn-sm"
                 onclick="return confirm('Cancel this campaign?')">
@@ -63,10 +63,10 @@ $cColor = $statusColors[$cStatus] ?? 'secondary';
         </form>
         <?php endif; ?>
 
-        <a href="/campaigns/<?= (int)$campaign['id'] ?>/preview" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/preview" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-eye me-1"></i>Preview
         </a>
-        <a href="/campaigns" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/campaigns" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-arrow-left me-1"></i>Back
         </a>
     </div>

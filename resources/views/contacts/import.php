@@ -13,7 +13,7 @@ $availableFields = $availableFields ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">Import Contacts</h6>
-    <a href="/contacts" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/contacts" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <!-- Step Indicator -->
@@ -55,7 +55,7 @@ $availableFields = $availableFields ?? [];
 
 <?php if ($step === 1): ?>
 <!-- ==================== STEP 1: Upload ==================== -->
-<form method="POST" action="/contacts/import" enctype="multipart/form-data">
+<form method="POST" action="<?= BASE_PATH ?>/contacts/import" enctype="multipart/form-data">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
     <input type="hidden" name="step" value="1">
 
@@ -111,7 +111,7 @@ $availableFields = $availableFields ?? [];
 
 <?php elseif ($step === 2): ?>
 <!-- ==================== STEP 2: Map Fields & Confirm ==================== -->
-<form method="POST" action="/contacts/import/confirm">
+<form method="POST" action="<?= BASE_PATH ?>/contacts/import/confirm">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
     <input type="hidden" name="step" value="2">
 
@@ -211,7 +211,7 @@ $availableFields = $availableFields ?? [];
     </div>
 
     <div class="d-flex gap-2">
-        <a href="/contacts/import" class="btn btn-outline-secondary">
+        <a href="<?= BASE_PATH ?>/contacts/import" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Start Over
         </a>
         <button type="submit" class="btn btn-primary">

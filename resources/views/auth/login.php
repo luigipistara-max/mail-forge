@@ -13,7 +13,7 @@ $errors = $errors ?? [];
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/login" novalidate>
+<form method="POST" action="<?= BASE_PATH ?>/login" novalidate>
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
 
     <div class="mb-3">
@@ -40,7 +40,7 @@ $errors = $errors ?? [];
     <div class="mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <label for="password" class="form-label fw-semibold mb-0">Password</label>
-            <a href="/forgot-password" class="small text-decoration-none">Forgot password?</a>
+            <a href="<?= BASE_PATH ?>/forgot-password" class="small text-decoration-none">Forgot password?</a>
         </div>
         <div class="input-group mt-1">
             <span class="input-group-text"><i class="bi bi-lock"></i></span>

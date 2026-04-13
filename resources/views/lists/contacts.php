@@ -17,7 +17,7 @@ $search   = $search   ?? '';
 
 <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
     <div>
-        <a href="/lists/<?= (int)$list['id'] ?>" class="text-muted small text-decoration-none">
+        <a href="<?= BASE_PATH ?>/lists/<?= (int)$list['id'] ?>" class="text-muted small text-decoration-none">
             <i class="bi bi-arrow-left me-1"></i><?= htmlspecialchars($list['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
         </a>
         <h1 class="h3 mb-0 fw-bold mt-1">Contacts in List</h1>
@@ -63,7 +63,7 @@ $search   = $search   ?? '';
                 <?php foreach ($contacts as $contact): ?>
                 <tr>
                     <td>
-                        <a href="/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none">
+                        <a href="<?= BASE_PATH ?>/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none">
                             <?= htmlspecialchars($contact['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                         </a>
                     </td>
@@ -77,7 +77,7 @@ $search   = $search   ?? '';
                     </td>
                     <td class="small text-muted"><?= htmlspecialchars($contact['subscribed_at'] ?? $contact['created_at'] ?? '—', ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="text-end">
-                        <form method="POST" action="/lists/<?= (int)$list['id'] ?>/contacts/<?= (int)$contact['id'] ?>/remove"
+                        <form method="POST" action="<?= BASE_PATH ?>/lists/<?= (int)$list['id'] ?>/contacts/<?= (int)$contact['id'] ?>/remove"
                             onsubmit="return confirm('Remove this contact from the list?')">
                             <?= \MailForge\Helpers\CsrfHelper::field() ?>
                             <button type="submit" class="btn btn-outline-danger btn-sm" title="Remove from list">

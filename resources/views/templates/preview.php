@@ -15,10 +15,10 @@ $preview  = $preview  ?? '';
         <?php endif; ?>
     </div>
     <div class="d-flex gap-2">
-        <a href="/templates/<?= (int)($template['id'] ?? 0) ?>/edit" class="btn btn-outline-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/templates/<?= (int)($template['id'] ?? 0) ?>/edit" class="btn btn-outline-primary btn-sm">
             <i class="bi bi-pencil me-1"></i>Edit
         </a>
-        <a href="/templates" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/templates" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-arrow-left me-1"></i>Back
         </a>
     </div>

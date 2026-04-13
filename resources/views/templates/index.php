@@ -9,7 +9,7 @@ $filters    = $filters    ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">Templates</h6>
-    <a href="/templates/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/templates/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>New Template
     </a>
 </div>
@@ -17,7 +17,7 @@ $filters    = $filters    ?? [];
 <!-- Filters -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body py-3">
-        <form method="GET" action="/templates" class="row g-2 align-items-end">
+        <form method="GET" action="<?= BASE_PATH ?>/templates" class="row g-2 align-items-end">
             <div class="col-sm-5">
                 <label class="form-label fw-semibold small mb-1">Search</label>
                 <input type="text" name="search" class="form-control form-control-sm"
@@ -40,7 +40,7 @@ $filters    = $filters    ?? [];
             </div>
             <?php if (!empty($filters['search']) || !empty($filters['category'])): ?>
             <div class="col-sm-2">
-                <a href="/templates" class="btn btn-link btn-sm text-muted">Clear</a>
+                <a href="<?= BASE_PATH ?>/templates" class="btn btn-link btn-sm text-muted">Clear</a>
             </div>
             <?php endif; ?>
         </form>
@@ -52,7 +52,7 @@ $filters    = $filters    ?? [];
         <?php if (empty($templates)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-file-earmark-richtext fs-1 d-block mb-2 opacity-25"></i>
-            No templates found. <a href="/templates/create">Create your first template</a>.
+            No templates found. <a href="<?= BASE_PATH ?>/templates/create">Create your first template</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -90,13 +90,13 @@ $filters    = $filters    ?? [];
                     <td class="text-muted small"><?= htmlspecialchars($tpl['updated_at'] ?? $tpl['created_at'] ?? '—', ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="text-end">
                         <div class="btn-group btn-group-sm">
-                            <a href="/templates/<?= (int)$tpl['id'] ?>" class="btn btn-outline-secondary" title="Preview">
+                            <a href="<?= BASE_PATH ?>/templates/<?= (int)$tpl['id'] ?>" class="btn btn-outline-secondary" title="Preview">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="/templates/<?= (int)$tpl['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
+                            <a href="<?= BASE_PATH ?>/templates/<?= (int)$tpl['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            <form method="POST" action="/templates/<?= (int)$tpl['id'] ?>/duplicate" class="d-inline">
+                            <form method="POST" action="<?= BASE_PATH ?>/templates/<?= (int)$tpl['id'] ?>/duplicate" class="d-inline">
                                 <?= \MailForge\Helpers\CsrfHelper::field() ?>
                                 <button type="submit" class="btn btn-outline-secondary" title="Duplicate">
                                     <i class="bi bi-copy"></i>
@@ -161,6 +161,6 @@ $filters    = $filters    ?? [];
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteTplName').textContent = btn.dataset.tplName;
-    document.getElementById('deleteForm').action = '/templates/' + btn.dataset.tplId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/templates/' + btn.dataset.tplId;
 });
 </script>

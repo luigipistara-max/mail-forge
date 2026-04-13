@@ -12,7 +12,7 @@ $bounced      = (int)($stats['bounced']      ?? 0);
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <div>
-        <a href="/reports" class="text-muted small text-decoration-none">
+        <a href="<?= BASE_PATH ?>/reports" class="text-muted small text-decoration-none">
             <i class="bi bi-arrow-left me-1"></i>Reports
         </a>
         <h1 class="h3 mb-0 fw-bold mt-1">Contact Growth</h1>

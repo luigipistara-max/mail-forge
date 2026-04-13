@@ -24,7 +24,7 @@ $s = fn(string $key, string $default = ''): string =>
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/settings/general">
+<form method="POST" action="<?= BASE_PATH ?>/settings/general">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
 
     <div class="row g-4">

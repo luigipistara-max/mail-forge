@@ -15,9 +15,16 @@
 define('MAIL_FORGE_ROOT', __DIR__);
 define('APP_START', microtime(true));
 
+// Detect base path for subdirectory installations (e.g. /mail → BASE_PATH = '/mail')
+if (!defined('BASE_PATH')) {
+    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '';
+    $detectedBase = rtrim(dirname($scriptName), '/\\');
+    define('BASE_PATH', $detectedBase === '.' ? '' : $detectedBase);
+}
+
 // Redirect to installer if not yet installed
 if (!file_exists(MAIL_FORGE_ROOT . '/storage/install.lock') && !file_exists(MAIL_FORGE_ROOT . '/.env')) {
-    header('Location: /install/');
+    header('Location: ' . BASE_PATH . '/install/');
     exit;
 }
 

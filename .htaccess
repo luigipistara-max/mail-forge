@@ -22,16 +22,19 @@ Options +FollowSymLinks
     # Block access to sensitive server-side directories (not install/ — the installer must be web-accessible)
     RewriteRule ^(app|config|database|storage|bootstrap|vendor|cron)(/|$) - [F,L]
 
-    # ─── Static assets served directly from public/ ───────────────────────────
-    # Requests for files/dirs that physically exist under public/ are served as-is
+    # ─── Static assets & front controller ────────────────────────────────────
+    # Forward all requests that don't match a real file or directory to public/.
+    # This works correctly in subdirectory installations (e.g. /mail/) because
+    # it uses relative paths rather than %{DOCUMENT_ROOT}/public%{REQUEST_URI}.
+    # After this rewrite, public/.htaccess routes non-files to public/index.php
+    # which acts as the front controller.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
-    RewriteRule ^(.*)$ public/$1 [L]
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
 
-    # ─── Front controller ─────────────────────────────────────────────────────
-    # Everything else goes through the root index.php
+    # ─── Fallback front controller ────────────────────────────────────────────
+    # If the public/ rewrite above did not resolve a file, route through the
+    # root index.php front controller as a safety net.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [QSA,L]

@@ -31,7 +31,7 @@ $fullName    = trim(($contact['first_name'] ?? '') . ' ' . ($contact['last_name'
         <?php endif; ?>
     </div>
     <div class="d-flex gap-2">
-        <a href="/contacts/<?= (int)($contact['id'] ?? 0) ?>/edit" class="btn btn-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/contacts/<?= (int)($contact['id'] ?? 0) ?>/edit" class="btn btn-primary btn-sm">
             <i class="bi bi-pencil me-1"></i>Edit
         </a>
         <button type="button" class="btn btn-outline-danger btn-sm"
@@ -165,7 +165,7 @@ $fullName    = trim(($contact['first_name'] ?? '') . ' ' . ($contact['last_name'
                     ?>
                     <li class="d-flex align-items-center justify-content-between py-2 border-bottom">
                         <div>
-                            <a href="/lists/<?= (int)($list['id'] ?? 0) ?>" class="text-decoration-none fw-semibold small">
+                            <a href="<?= BASE_PATH ?>/lists/<?= (int)($list['id'] ?? 0) ?>" class="text-decoration-none fw-semibold small">
                                 <?= htmlspecialchars($list['name'] ?? '—', ENT_QUOTES, 'UTF-8') ?>
                             </a>
                         </div>
@@ -211,7 +211,7 @@ $fullName    = trim(($contact['first_name'] ?? '') . ' ' . ($contact['last_name'
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST" action="/contacts/<?= (int)($contact['id'] ?? 0) ?>">
+                <form method="POST" action="<?= BASE_PATH ?>/contacts/<?= (int)($contact['id'] ?? 0) ?>">
                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>

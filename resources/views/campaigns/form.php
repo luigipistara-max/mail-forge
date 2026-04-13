@@ -17,7 +17,7 @@ $e = fn(string $key): string => htmlspecialchars($campaign[$key] ?? '', ENT_QUOT
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0"><?= $isEdit ? 'Edit Campaign' : 'Create Campaign' ?></h6>
-    <a href="/campaigns" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/campaigns" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -277,7 +277,7 @@ $e = fn(string $key): string => htmlspecialchars($campaign[$key] ?? '', ENT_QUOT
                 <button type="submit" class="btn btn-outline-secondary" id="btnDraft" data-action="draft">
                     <i class="bi bi-floppy me-1"></i>Save as Draft
                 </button>
-                <a href="/campaigns" class="btn btn-link text-muted">Cancel</a>
+                <a href="<?= BASE_PATH ?>/campaigns" class="btn btn-link text-muted">Cancel</a>
             </div>
 
         </div>

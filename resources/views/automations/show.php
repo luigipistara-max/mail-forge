@@ -24,7 +24,7 @@ $isActive = ($automation['status'] ?? '') === 'active';
     </div>
     <div class="d-flex gap-2 align-items-center">
         <!-- Activate / Deactivate toggle -->
-        <form method="POST" action="/automations/<?= (int)$automation['id'] ?>/toggle">
+        <form method="POST" action="<?= BASE_PATH ?>/automations/<?= (int)$automation['id'] ?>/toggle">
             <?= \MailForge\Helpers\CsrfHelper::field() ?>
             <input type="hidden" name="_method" value="PUT">
             <?php if ($isActive): ?>
@@ -37,10 +37,10 @@ $isActive = ($automation['status'] ?? '') === 'active';
             </button>
             <?php endif; ?>
         </form>
-        <a href="/automations/<?= (int)$automation['id'] ?>/edit" class="btn btn-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/automations/<?= (int)$automation['id'] ?>/edit" class="btn btn-primary btn-sm">
             <i class="bi bi-pencil me-1"></i>Edit
         </a>
-        <a href="/automations" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/automations" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-arrow-left me-1"></i>Back
         </a>
     </div>

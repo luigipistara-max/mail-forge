@@ -14,7 +14,7 @@ $token = $token ?? '';
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/reset-password" novalidate>
+<form method="POST" action="<?= BASE_PATH ?>/reset-password" novalidate>
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
     <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
 
@@ -67,7 +67,7 @@ $token = $token ?? '';
 </form>
 
 <div class="text-center">
-    <a href="/login" class="small text-decoration-none text-muted">
+    <a href="<?= BASE_PATH ?>/login" class="small text-decoration-none text-muted">
         <i class="bi bi-arrow-left me-1"></i>Back to Sign In
     </a>
 </div>

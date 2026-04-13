@@ -17,7 +17,7 @@ $status     = $status     ?? '';
 
 <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
     <div>
-        <a href="/campaigns/<?= (int)$campaign['id'] ?>" class="text-muted small text-decoration-none">
+        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>" class="text-muted small text-decoration-none">
             <i class="bi bi-arrow-left me-1"></i><?= htmlspecialchars($campaign['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
         </a>
         <h1 class="h3 mb-0 fw-bold mt-1">Recipients</h1>
