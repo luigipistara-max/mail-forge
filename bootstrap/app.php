@@ -14,6 +14,12 @@ if (file_exists($vendorAutoload)) {
     require_once __DIR__ . '/autoload.php';
 }
 
+// ─── Base path constant (fallback for scripts that don't define it) ───────────
+
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', '');
+}
+
 // ─── Environment ─────────────────────────────────────────────────────────────
 
 $envFile = __DIR__ . '/../.env';

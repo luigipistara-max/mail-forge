@@ -26,14 +26,14 @@ $statusFilter = $filters['status'] ?? '';
 
 <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
     <div>
-        <a href="/reports" class="text-muted small text-decoration-none">
+        <a href="<?= BASE_PATH ?>/reports" class="text-muted small text-decoration-none">
             <i class="bi bi-arrow-left me-1"></i>Reports
         </a>
         <h1 class="h3 mb-0 fw-bold mt-1">
             <?= htmlspecialchars($campaign['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
         </h1>
     </div>
-    <a href="/reports/campaigns/<?= (int)$campaign['id'] ?>/export" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_PATH ?>/reports/campaigns/<?= (int)$campaign['id'] ?>/export" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-download me-1"></i>Export CSV
     </a>
 </div>

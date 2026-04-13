@@ -65,7 +65,7 @@ $list    = $list    ?? null;
                 </p>
                 <?php endif; ?>
 
-                <a href="/" class="btn btn-outline-secondary btn-sm">
+                <a href="<?= BASE_PATH ?>/" class="btn btn-outline-secondary btn-sm">
                     <i class="bi bi-house me-1"></i>Back to Website
                 </a>
 

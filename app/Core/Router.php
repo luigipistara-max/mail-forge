@@ -94,6 +94,13 @@ class Router
         $method = $request->method;
         $uri    = $this->normaliseUri($request->uri);
 
+        // Strip base path for subdirectory installations (e.g. /mail/login → /login)
+        $basePath = defined('BASE_PATH') ? BASE_PATH : '';
+        if ($basePath !== '' && str_starts_with($uri, $basePath)) {
+            $uri = substr($uri, strlen($basePath)) ?: '/';
+            $uri = '/' . ltrim($uri, '/');
+        }
+
         // Support method override via hidden _method field or X-HTTP-Method-Override header
         if ($method === 'POST') {
             $override = $request->body['_method'] ?? $request->headers['X-Http-Method-Override'] ?? null;

@@ -22,7 +22,7 @@ $s = fn(string $key, string $default = ''): string =>
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/settings/pwa">
+<form method="POST" action="<?= BASE_PATH ?>/settings/pwa">
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
 
     <div class="row g-4">

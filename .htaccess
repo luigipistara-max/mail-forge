@@ -22,19 +22,13 @@ Options +FollowSymLinks
     # Block access to sensitive server-side directories (not install/ — the installer must be web-accessible)
     RewriteRule ^(app|config|database|storage|bootstrap|vendor|cron)(/|$) - [F,L]
 
-    # ─── Static assets served directly from public/ ───────────────────────────
-    # Requests for files/dirs that physically exist under public/ are served as-is
+    # ─── Static assets & front controller ────────────────────────────────────
+    # Forward all requests that don't match a real file or directory to public/
+    # This works correctly in subdirectory installations (e.g. /mail/) because
+    # it uses relative paths rather than %{DOCUMENT_ROOT}/public%{REQUEST_URI}
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
     RewriteRule ^(.*)$ public/$1 [L]
-
-    # ─── Front controller ─────────────────────────────────────────────────────
-    # Everything else goes through the root index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.php [QSA,L]
 </IfModule>
 
 # ─── Security headers ─────────────────────────────────────────────────────────

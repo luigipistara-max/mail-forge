@@ -36,7 +36,7 @@ $statusColors = [
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">Campaigns</h6>
-    <a href="/campaigns/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/campaigns/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>New Campaign
     </a>
 </div>
@@ -46,7 +46,7 @@ $statusColors = [
     <?php foreach ($statusTabs as $val => $label): ?>
     <li class="nav-item">
         <a class="nav-link <?= $status === $val ? 'active' : '' ?>"
-            href="/campaigns<?= $val !== '' ? '?status=' . urlencode($val) : '' ?>">
+            href="<?= BASE_PATH ?>/campaigns<?= $val !== '' ? '?status=' . urlencode($val) : '' ?>">
             <?= htmlspecialchars($label, ENT_QUOTES, 'UTF-8') ?>
         </a>
     </li>
@@ -58,7 +58,7 @@ $statusColors = [
         <?php if (empty($campaigns)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-megaphone fs-1 d-block mb-2 opacity-25"></i>
-            No campaigns found. <a href="/campaigns/create">Create your first campaign</a>.
+            No campaigns found. <a href="<?= BASE_PATH ?>/campaigns/create">Create your first campaign</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -82,7 +82,7 @@ $statusColors = [
                 ?>
                 <tr>
                     <td>
-                        <a href="/campaigns/<?= (int)$campaign['id'] ?>" class="fw-semibold text-decoration-none text-dark">
+                        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>" class="fw-semibold text-decoration-none text-dark">
                             <?= htmlspecialchars($campaign['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                         </a>
                         <?php if (!empty($campaign['subject'])): ?>
@@ -103,15 +103,15 @@ $statusColors = [
                     <td class="text-muted small"><?= htmlspecialchars($campaign['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="text-end">
                         <div class="btn-group btn-group-sm">
-                            <a href="/campaigns/<?= (int)$campaign['id'] ?>" class="btn btn-outline-secondary" title="View">
+                            <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>" class="btn btn-outline-secondary" title="View">
                                 <i class="bi bi-eye"></i>
                             </a>
                             <?php if ($isDraftOrScheduled): ?>
-                            <a href="/campaigns/<?= (int)$campaign['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
+                            <a href="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <?php endif; ?>
-                            <form method="POST" action="/campaigns/<?= (int)$campaign['id'] ?>/duplicate" class="d-inline">
+                            <form method="POST" action="<?= BASE_PATH ?>/campaigns/<?= (int)$campaign['id'] ?>/duplicate" class="d-inline">
                                 <?= \MailForge\Helpers\CsrfHelper::field() ?>
                                 <button type="submit" class="btn btn-outline-secondary" title="Duplicate">
                                     <i class="bi bi-copy"></i>
@@ -187,6 +187,6 @@ $statusColors = [
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteCampaignName').textContent = btn.dataset.campaignName;
-    document.getElementById('deleteForm').action = '/campaigns/' + btn.dataset.campaignId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/campaigns/' + btn.dataset.campaignId;
 });
 </script>

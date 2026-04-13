@@ -17,7 +17,7 @@ if (!empty($segment['rules']) && is_string($segment['rules'])) {
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0"><?= $isEdit ? 'Edit Segment' : 'Create Segment' ?></h6>
-    <a href="/segments" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/segments" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -113,7 +113,7 @@ if (!empty($segment['rules']) && is_string($segment['rules'])) {
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-lg me-1"></i><?= $isEdit ? 'Save Changes' : 'Create Segment' ?>
                 </button>
-                <a href="/segments" class="btn btn-outline-secondary">Cancel</a>
+                <a href="<?= BASE_PATH ?>/segments" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </div>
     </div>

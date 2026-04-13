@@ -19,7 +19,7 @@ $clickRate = $sent > 0 ? round($uniqClicks / $sent * 100, 1) : 0;
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 fw-bold">Reports</h1>
-    <a href="/reports/export" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_PATH ?>/reports/export" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-download me-1"></i>Export CSV
     </a>
 </div>
@@ -122,7 +122,7 @@ $clickRate = $sent > 0 ? round($uniqClicks / $sent * 100, 1) : 0;
                         <span class="badge bg-success"><?= number_format($cClickRate, 1) ?>%</span>
                     </td>
                     <td class="text-end">
-                        <a href="/reports/campaign/<?= (int)$campaign['id'] ?>" class="btn btn-outline-secondary btn-sm">
+                        <a href="<?= BASE_PATH ?>/reports/campaign/<?= (int)$campaign['id'] ?>" class="btn btn-outline-secondary btn-sm">
                             <i class="bi bi-bar-chart"></i>
                         </a>
                     </td>

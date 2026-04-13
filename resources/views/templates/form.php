@@ -9,7 +9,7 @@ $e = fn(string $key): string => htmlspecialchars($template[$key] ?? '', ENT_QUOT
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0"><?= $isEdit ? 'Edit Template' : 'Create Template' ?></h6>
-    <a href="/templates" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/templates" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -132,14 +132,14 @@ $e = fn(string $key): string => htmlspecialchars($template[$key] ?? '', ENT_QUOT
 
             <div class="d-grid gap-2">
                 <?php if ($isEdit): ?>
-                <a href="/templates/<?= (int)$template['id'] ?>" class="btn btn-outline-secondary" target="_blank">
+                <a href="<?= BASE_PATH ?>/templates/<?= (int)$template['id'] ?>" class="btn btn-outline-secondary" target="_blank">
                     <i class="bi bi-eye me-1"></i>Preview
                 </a>
                 <?php endif; ?>
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-lg me-1"></i><?= $isEdit ? 'Save Changes' : 'Create Template' ?>
                 </button>
-                <a href="/templates" class="btn btn-outline-secondary">Cancel</a>
+                <a href="<?= BASE_PATH ?>/templates" class="btn btn-outline-secondary">Cancel</a>
             </div>
 
         </div>

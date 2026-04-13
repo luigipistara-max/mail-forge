@@ -18,10 +18,10 @@ $statusColors = [
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">All Contacts</h6>
     <div class="d-flex gap-2">
-        <a href="/contacts/import" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/contacts/import" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-upload me-1"></i>Import
         </a>
-        <a href="/contacts/create" class="btn btn-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/contacts/create" class="btn btn-primary btn-sm">
             <i class="bi bi-person-plus me-1"></i>New Contact
         </a>
     </div>
@@ -29,7 +29,7 @@ $statusColors = [
 
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
-        <form method="GET" action="/contacts" class="row g-2 align-items-end">
+        <form method="GET" action="<?= BASE_PATH ?>/contacts" class="row g-2 align-items-end">
             <div class="col-sm-6 col-md-5">
                 <label for="search" class="form-label small fw-semibold">Search</label>
                 <div class="input-group input-group-sm">
@@ -52,7 +52,7 @@ $statusColors = [
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary btn-sm">Filter</button>
-                <a href="/contacts" class="btn btn-outline-secondary btn-sm ms-1">Reset</a>
+                <a href="<?= BASE_PATH ?>/contacts" class="btn btn-outline-secondary btn-sm ms-1">Reset</a>
             </div>
         </form>
     </div>
@@ -63,7 +63,7 @@ $statusColors = [
         <?php if (empty($contacts)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-people fs-1 d-block mb-2 opacity-25"></i>
-            No contacts found. <a href="/contacts/create">Add your first contact</a> or <a href="/contacts/import">import from CSV</a>.
+            No contacts found. <a href="<?= BASE_PATH ?>/contacts/create">Add your first contact</a> or <a href="<?= BASE_PATH ?>/contacts/import">import from CSV</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -89,7 +89,7 @@ $statusColors = [
                     <tr>
                         <td><input type="checkbox" class="form-check-input contact-check" value="<?= (int)$contact['id'] ?>"></td>
                         <td>
-                            <a href="/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none fw-semibold">
+                            <a href="<?= BASE_PATH ?>/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none fw-semibold">
                                 <?= htmlspecialchars($contact['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                             </a>
                         </td>
@@ -117,8 +117,8 @@ $statusColors = [
                         <td class="text-muted small"><?= htmlspecialchars($contact['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                         <td class="text-end">
                             <div class="btn-group btn-group-sm">
-                                <a href="/contacts/<?= (int)$contact['id'] ?>" class="btn btn-outline-secondary" title="View"><i class="bi bi-eye"></i></a>
-                                <a href="/contacts/<?= (int)$contact['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a href="<?= BASE_PATH ?>/contacts/<?= (int)$contact['id'] ?>" class="btn btn-outline-secondary" title="View"><i class="bi bi-eye"></i></a>
+                                <a href="<?= BASE_PATH ?>/contacts/<?= (int)$contact['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
                                 <button type="button" class="btn btn-outline-danger" title="Delete"
                                     data-bs-toggle="modal" data-bs-target="#deleteModal"
                                     data-contact-id="<?= (int)$contact['id'] ?>"
@@ -195,7 +195,7 @@ $statusColors = [
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteContactEmail').textContent = btn.dataset.contactEmail;
-    document.getElementById('deleteForm').action = '/contacts/' + btn.dataset.contactId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/contacts/' + btn.dataset.contactId;
 });
 document.getElementById('selectAll')?.addEventListener('change', function () {
     document.querySelectorAll('.contact-check').forEach(cb => cb.checked = this.checked);

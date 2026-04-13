@@ -16,11 +16,11 @@ $preview  = $preview  ?? '';
     </div>
     <div class="d-flex gap-2">
         <?php if (in_array($campaign['status'] ?? '', ['draft', 'scheduled'], true)): ?>
-        <a href="/campaigns/<?= (int)($campaign['id'] ?? 0) ?>/edit" class="btn btn-outline-primary btn-sm">
+        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)($campaign['id'] ?? 0) ?>/edit" class="btn btn-outline-primary btn-sm">
             <i class="bi bi-pencil me-1"></i>Edit
         </a>
         <?php endif; ?>
-        <a href="/campaigns/<?= (int)($campaign['id'] ?? 0) ?>" class="btn btn-outline-secondary btn-sm">
+        <a href="<?= BASE_PATH ?>/campaigns/<?= (int)($campaign['id'] ?? 0) ?>" class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-arrow-left me-1"></i>Back
         </a>
     </div>

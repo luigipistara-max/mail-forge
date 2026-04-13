@@ -12,7 +12,7 @@ $emailSent = $emailSent ?? false;
     If an account exists for that email, a password reset link has been sent. Check your inbox.
 </div>
 <div class="text-center mt-3">
-    <a href="/login" class="btn btn-outline-primary">
+    <a href="<?= BASE_PATH ?>/login" class="btn btn-outline-primary">
         <i class="bi bi-arrow-left me-2"></i>Back to Sign In
     </a>
 </div>
@@ -26,7 +26,7 @@ $emailSent = $emailSent ?? false;
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/forgot-password" novalidate>
+<form method="POST" action="<?= BASE_PATH ?>/forgot-password" novalidate>
     <?= \MailForge\Helpers\CsrfHelper::field() ?>
 
     <div class="mb-4">
@@ -56,7 +56,7 @@ $emailSent = $emailSent ?? false;
 </form>
 
 <div class="text-center">
-    <a href="/login" class="small text-decoration-none text-muted">
+    <a href="<?= BASE_PATH ?>/login" class="small text-decoration-none text-muted">
         <i class="bi bi-arrow-left me-1"></i>Back to Sign In
     </a>
 </div>

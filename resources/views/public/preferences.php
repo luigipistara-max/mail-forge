@@ -42,7 +42,7 @@ $success = $success ?? false;
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-header bg-transparent fw-semibold">Mailing Lists</div>
             <div class="card-body">
-                <form method="POST" action="/preferences" id="preferencesForm">
+                <form method="POST" action="<?= BASE_PATH ?>/preferences" id="preferencesForm">
                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
                     <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">
 
@@ -98,7 +98,7 @@ $success = $success ?? false;
             <div class="card-body">
                 <h6 class="fw-semibold mb-1">Unsubscribe from all</h6>
                 <p class="text-muted small mb-3">Remove yourself from all mailing lists at once. You will stop receiving all emails from us.</p>
-                <form method="POST" action="/unsubscribe-all"
+                <form method="POST" action="<?= BASE_PATH ?>/unsubscribe-all"
                     onsubmit="return confirm('Are you sure you want to unsubscribe from all lists?')">
                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
                     <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8') ?>">

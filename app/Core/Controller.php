@@ -92,9 +92,15 @@ abstract class Controller
 
     /**
      * Redirect to a URL and terminate.
+     * Relative URLs (starting with /) are automatically prefixed with BASE_PATH.
      */
     protected function redirect(string $url, int $status = 302): never
     {
+        // Auto-prefix base path for relative URLs in subdirectory installations
+        if (str_starts_with($url, '/') && !str_starts_with($url, '//')) {
+            $basePath = defined('BASE_PATH') ? BASE_PATH : '';
+            $url = $basePath . $url;
+        }
         http_response_code($status);
         header("Location: {$url}");
         exit(0);

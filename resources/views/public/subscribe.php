@@ -77,7 +77,7 @@ $settings = $settings ?? [];
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/subscribe/<?= htmlspecialchars($list['slug'] ?? $list['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>" novalidate>
+                <form method="POST" action="<?= BASE_PATH ?>/subscribe/<?= htmlspecialchars($list['slug'] ?? $list['id'] ?? '', ENT_QUOTES, 'UTF-8') ?>" novalidate>
                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
 
                     <div class="mb-3">

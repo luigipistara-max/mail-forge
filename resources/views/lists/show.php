@@ -27,7 +27,7 @@ $statusColors = [
             <?php endif; ?>
         </div>
     </div>
-    <a href="/lists/<?= (int)($list['id'] ?? 0) ?>/edit" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/lists/<?= (int)($list['id'] ?? 0) ?>/edit" class="btn btn-primary btn-sm">
         <i class="bi bi-pencil me-1"></i>Edit List
     </a>
 </div>
@@ -55,7 +55,7 @@ $statusColors = [
     <div class="tab-pane fade show active" id="contacts-tab">
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-body">
-                <form method="GET" action="/lists/<?= (int)($list['id'] ?? 0) ?>" class="row g-2 align-items-end">
+                <form method="GET" action="<?= BASE_PATH ?>/lists/<?= (int)($list['id'] ?? 0) ?>" class="row g-2 align-items-end">
                     <div class="col-sm-6 col-md-5">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -65,7 +65,7 @@ $statusColors = [
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary btn-sm">Search</button>
-                        <a href="/lists/<?= (int)($list['id'] ?? 0) ?>" class="btn btn-outline-secondary btn-sm ms-1">Reset</a>
+                        <a href="<?= BASE_PATH ?>/lists/<?= (int)($list['id'] ?? 0) ?>" class="btn btn-outline-secondary btn-sm ms-1">Reset</a>
                     </div>
                 </form>
             </div>
@@ -95,7 +95,7 @@ $statusColors = [
                         <?php $badge = $statusColors[$contact['status'] ?? 'pending'] ?? 'secondary'; ?>
                         <tr>
                             <td>
-                                <a href="/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none fw-semibold">
+                                <a href="<?= BASE_PATH ?>/contacts/<?= (int)$contact['id'] ?>" class="text-decoration-none fw-semibold">
                                     <?= htmlspecialchars($contact['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                                 </a>
                             </td>
@@ -103,7 +103,7 @@ $statusColors = [
                             <td><span class="badge bg-<?= $badge ?>"><?= ucfirst(htmlspecialchars($contact['status'] ?? '', ENT_QUOTES, 'UTF-8')) ?></span></td>
                             <td class="text-muted small"><?= htmlspecialchars($contact['subscribed_at'] ?? $contact['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="text-end">
-                                <form method="POST" action="/lists/<?= (int)($list['id'] ?? 0) ?>/contacts/<?= (int)$contact['id'] ?>/remove"
+                                <form method="POST" action="<?= BASE_PATH ?>/lists/<?= (int)($list['id'] ?? 0) ?>/contacts/<?= (int)$contact['id'] ?>/remove"
                                     onsubmit="return confirm('Remove this contact from the list?')">
                                     <?= \MailForge\Helpers\CsrfHelper::field() ?>
                                     <input type="hidden" name="_method" value="DELETE">

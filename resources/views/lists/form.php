@@ -9,7 +9,7 @@ $e = fn(string $key): string => htmlspecialchars($list[$key] ?? '', ENT_QUOTES, 
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0"><?= $isEdit ? 'Edit List' : 'Create List' ?></h6>
-    <a href="/lists" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/lists" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -99,7 +99,7 @@ $e = fn(string $key): string => htmlspecialchars($list[$key] ?? '', ENT_QUOTES, 
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-lg me-1"></i><?= $isEdit ? 'Save Changes' : 'Create List' ?>
                 </button>
-                <a href="/lists" class="btn btn-outline-secondary">Cancel</a>
+                <a href="<?= BASE_PATH ?>/lists" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </div>
     </div>

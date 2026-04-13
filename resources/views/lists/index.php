@@ -5,7 +5,7 @@ $lists = $lists ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0">Mailing Lists</h6>
-    <a href="/lists/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/lists/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>New List
     </a>
 </div>
@@ -15,7 +15,7 @@ $lists = $lists ?? [];
         <?php if (empty($lists)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-list-ul fs-1 d-block mb-2 opacity-25"></i>
-            No mailing lists yet. <a href="/lists/create">Create your first list</a>.
+            No mailing lists yet. <a href="<?= BASE_PATH ?>/lists/create">Create your first list</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -34,7 +34,7 @@ $lists = $lists ?? [];
                 <?php foreach ($lists as $list): ?>
                 <tr>
                     <td>
-                        <a href="/lists/<?= (int)$list['id'] ?>" class="text-decoration-none fw-semibold">
+                        <a href="<?= BASE_PATH ?>/lists/<?= (int)$list['id'] ?>" class="text-decoration-none fw-semibold">
                             <?= htmlspecialchars($list['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                         </a>
                         <?php if (!empty($list['description'])): ?>
@@ -57,8 +57,8 @@ $lists = $lists ?? [];
                     <td class="text-muted small"><?= htmlspecialchars($list['created_at'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                     <td class="text-end">
                         <div class="btn-group btn-group-sm">
-                            <a href="/lists/<?= (int)$list['id'] ?>" class="btn btn-outline-secondary" title="View"><i class="bi bi-eye"></i></a>
-                            <a href="/lists/<?= (int)$list['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
+                            <a href="<?= BASE_PATH ?>/lists/<?= (int)$list['id'] ?>" class="btn btn-outline-secondary" title="View"><i class="bi bi-eye"></i></a>
+                            <a href="<?= BASE_PATH ?>/lists/<?= (int)$list['id'] ?>/edit" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
                             <button type="button" class="btn btn-outline-danger" title="Delete"
                                 data-bs-toggle="modal" data-bs-target="#deleteModal"
                                 data-list-id="<?= (int)$list['id'] ?>"
@@ -103,6 +103,6 @@ $lists = $lists ?? [];
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteListName').textContent = btn.dataset.listName;
-    document.getElementById('deleteForm').action = '/lists/' + btn.dataset.listId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/lists/' + btn.dataset.listId;
 });
 </script>

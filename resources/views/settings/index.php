@@ -1,42 +1,43 @@
 <?php
+$basePath = defined('BASE_PATH') ? BASE_PATH : '';
 $navCards = [
     [
-        'href'        => '/settings/general',
+        'href'        => $basePath . '/settings/general',
         'icon'        => 'bi-sliders',
         'color'       => 'primary',
         'title'       => 'General',
         'description' => 'App name, company info, timezone and locale.',
     ],
     [
-        'href'        => '/settings/email',
+        'href'        => $basePath . '/settings/email',
         'icon'        => 'bi-envelope-at',
         'color'       => 'info',
         'title'       => 'Email',
         'description' => 'Default sender, reply-to and batch sending options.',
     ],
     [
-        'href'        => '/settings/pwa',
+        'href'        => $basePath . '/settings/pwa',
         'icon'        => 'bi-phone',
         'color'       => 'success',
         'title'       => 'PWA',
         'description' => 'Progressive Web App name, colors and manifest.',
     ],
     [
-        'href'        => '/settings/security',
+        'href'        => $basePath . '/settings/security',
         'icon'        => 'bi-shield-lock',
         'color'       => 'danger',
         'title'       => 'Security',
         'description' => 'Login limits, session timeout and password policy.',
     ],
     [
-        'href'        => '/settings/queue',
+        'href'        => $basePath . '/settings/queue',
         'icon'        => 'bi-stack',
         'color'       => 'warning',
         'title'       => 'Queue',
         'description' => 'Batch sizes, retry attempts and failure thresholds.',
     ],
     [
-        'href'        => '/smtp-servers',
+        'href'        => $basePath . '/smtp-servers',
         'icon'        => 'bi-envelope-arrow-up',
         'color'       => 'secondary',
         'title'       => 'SMTP Servers',

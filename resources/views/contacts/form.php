@@ -20,7 +20,7 @@ if (!empty($contact['tags'])) {
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h6 class="fw-bold mb-0"><?= $isEdit ? 'Edit Contact' : 'Create Contact' ?></h6>
-    <a href="/contacts" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="<?= BASE_PATH ?>/contacts" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back</a>
 </div>
 
 <?php if (!empty($errors) && isset($errors[0])): ?>
@@ -199,7 +199,7 @@ if (!empty($contact['tags'])) {
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-check-lg me-1"></i><?= $isEdit ? 'Save Changes' : 'Create Contact' ?>
                 </button>
-                <a href="/contacts" class="btn btn-outline-secondary">Cancel</a>
+                <a href="<?= BASE_PATH ?>/contacts" class="btn btn-outline-secondary">Cancel</a>
             </div>
 
         </div>

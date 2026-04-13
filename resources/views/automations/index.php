@@ -5,7 +5,7 @@ $automations = $automations ?? [];
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 fw-bold">Automations</h1>
-    <a href="/automations/create" class="btn btn-primary btn-sm">
+    <a href="<?= BASE_PATH ?>/automations/create" class="btn btn-primary btn-sm">
         <i class="bi bi-plus-lg me-1"></i>New Automation
     </a>
 </div>
@@ -15,7 +15,7 @@ $automations = $automations ?? [];
         <?php if (empty($automations)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-robot fs-1 d-block mb-2 opacity-25"></i>
-            No automations yet. <a href="/automations/create">Create your first automation</a>.
+            No automations yet. <a href="<?= BASE_PATH ?>/automations/create">Create your first automation</a>.
         </div>
         <?php else: ?>
         <div class="table-responsive">
@@ -34,7 +34,7 @@ $automations = $automations ?? [];
                 <?php foreach ($automations as $automation): ?>
                 <tr>
                     <td class="fw-semibold">
-                        <a href="/automations/<?= (int)$automation['id'] ?>" class="text-decoration-none">
+                        <a href="<?= BASE_PATH ?>/automations/<?= (int)$automation['id'] ?>" class="text-decoration-none">
                             <?= htmlspecialchars($automation['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>
                         </a>
                     </td>
@@ -71,10 +71,10 @@ $automations = $automations ?? [];
                     </td>
                     <td class="text-end">
                         <div class="btn-group btn-group-sm">
-                            <a href="/automations/<?= (int)$automation['id'] ?>" class="btn btn-outline-secondary" title="View">
+                            <a href="<?= BASE_PATH ?>/automations/<?= (int)$automation['id'] ?>" class="btn btn-outline-secondary" title="View">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="/automations/<?= (int)$automation['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
+                            <a href="<?= BASE_PATH ?>/automations/<?= (int)$automation['id'] ?>/edit" class="btn btn-outline-primary" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <button type="button" class="btn btn-outline-danger" title="Delete"
@@ -123,6 +123,6 @@ $automations = $automations ?? [];
 document.getElementById('deleteModal')?.addEventListener('show.bs.modal', function (e) {
     const btn = e.relatedTarget;
     document.getElementById('deleteAutomationName').textContent = btn.dataset.automationName;
-    document.getElementById('deleteForm').action = '/automations/' + btn.dataset.automationId;
+    document.getElementById('deleteForm').action = '<?= BASE_PATH ?>/automations/' + btn.dataset.automationId;
 });
 </script>

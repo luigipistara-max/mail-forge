@@ -10,7 +10,7 @@ $e = fn(string $key): string => htmlspecialchars($server[$key] ?? '', ENT_QUOTES
 
 <div class="d-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 fw-bold"><?= $isEdit ? 'Edit SMTP Server' : 'Add SMTP Server' ?></h1>
-    <a href="/smtp-servers" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_PATH ?>/smtp-servers" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-arrow-left me-1"></i>Back
     </a>
 </div>
@@ -201,7 +201,7 @@ $e = fn(string $key): string => htmlspecialchars($server[$key] ?? '', ENT_QUOTES
                         <button type="button" class="btn btn-outline-info" id="btnTestNew">
                             <i class="bi bi-plug me-1"></i>Test Connection
                         </button>
-                        <a href="/smtp-servers" class="btn btn-outline-secondary">Cancel</a>
+                        <a href="<?= BASE_PATH ?>/smtp-servers" class="btn btn-outline-secondary">Cancel</a>
                     </div>
                     <div id="testResult" class="mt-3 d-none"></div>
                 </div>
