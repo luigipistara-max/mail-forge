@@ -1,43 +1,10 @@
-Options -Indexes
-Options +FollowSymLinks
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# Protect sensitive files
-<FilesMatch "\.(env|lock|log|sql|json)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
+    # Serve existing files directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
 
-# Allow manifest.json and service-worker.js
-<FilesMatch "^(manifest\.json|service-worker\.js|offline\.html)$">
-    Order allow,deny
-    Allow from all
-</FilesMatch>
-
-RewriteEngine On
-
-# Handle HTTPS
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Redirect to HTTPS (uncomment if needed)
-
-# Serve existing files directly
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Route all requests to index.php
-RewriteRule ^ index.php [QSA,L]
-
-# Security headers
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options "nosniff"
-    Header always set X-Frame-Options "SAMEORIGIN"
-    Header always set X-XSS-Protection "1; mode=block"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # Route all requests to index.php
+    RewriteRule ^ index.php [QSA,L]
 </IfModule>
-
-# Prevent access to hidden files
-<FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
